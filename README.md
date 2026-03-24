@@ -1,75 +1,225 @@
-# Nuxt Minimal Starter
+# 🜏 Ordo Realitas
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Sistema web inspirado no universo de RPG paranormal, com foco em rituais, criaturas e gerenciamento de agentes.
 
-## Setup
+---
 
-Make sure to install dependencies:
+## 🌐 Estrutura de Rotas
 
-```bash
-# npm
-npm install
+```
+/                # Login (tela inicial)
+/dashboard       # Hub principal
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+/dashboard/bestiario
+/dashboard/grimorio
+/dashboard/agentes
+/dashboard/arquivos
+/dashboard/missoes
 ```
 
-## Development Server
+- `/` → autenticação
+- `/dashboard/...` → área protegida
 
-Start the development server on `http://localhost:3000`:
+---
 
-```bash
-# npm
-npm run dev
+## 🔐 Login (`/`)
 
-# pnpm
-pnpm dev
+Tela inicial do sistema.
 
-# yarn
-yarn dev
+### Layout
 
-# bun
-bun run dev
+- Logo central (Ordo Realitas)
+- Texto: `Bem vindo, Agente.`
+- Inputs:
+  - `agent_id`
+  - `password`
+
+- Botão: `Acessar sistema`
+
+### Feedback
+
+- `Validando credenciais...`
+- `Acesso autorizado`
+- `Falha de autenticação`
+
+### Fluxo
+
+```
+/ → /dashboard
 ```
 
-## Production
+---
 
-Build the application for production:
+## 🧠 Dashboard (`/dashboard`)
 
-```bash
-# npm
-npm run build
+Interface principal estilo sistema operacional.
 
-# pnpm
-pnpm build
+### Layout
 
-# yarn
-yarn build
+**Sidebar:**
 
-# bun
-bun run build
+- Dashboard
+- Bestiário
+- Grimório
+- Agentes
+- Arquivos
+
+**Topbar:**
+
+- Nome do agente
+- Patente (Recruta → Elite)
+- Status (sanidade / energia)
+
+---
+
+## 🗂️ Home do Dashboard
+
+Interface baseada em “apps”:
+
+```
+[ 📜 Grimório ]   [ 👁️ Bestiário ]
+[ 🧍 Agentes ]    [ 📁 Arquivos ]
 ```
 
-Locally preview production build:
+Cada item abre um módulo do sistema.
 
-```bash
-# npm
-npm run preview
+---
 
-# pnpm
-pnpm preview
+## 👁️ Bestiário (`/dashboard/bestiario`)
 
-# yarn
-yarn preview
+Catálogo de criaturas estilo dossiê.
 
-# bun
-bun run preview
+### Lista
+
+- Grid de criaturas
+- Filtros:
+  - Elemento
+  - VD (nível de perigo)
+
+### Detalhe
+
+- Nome
+- Atributos
+- Defesa / Vida
+- Resistências / Vulnerabilidades
+- Habilidades
+- Ações
+
+---
+
+## 📜 Grimório (`/dashboard/grimorio`)
+
+Catálogo de rituais.
+
+### Lista
+
+- Grid de rituais
+- Filtros:
+  - Elemento
+  - Círculo
+
+### Detalhe
+
+- Execução
+- Alcance
+- Efeito
+- Duração
+- Resistência
+- Formas avançadas
+
+---
+
+## 🧍 Agentes (`/dashboard/agentes`)
+
+Gerenciamento de agentes.
+
+- Nome
+- Patente
+- Sanidade
+- Energia
+- Histórico
+
+---
+
+## 📁 Arquivos (`/dashboard/arquivos`)
+
+Sistema de arquivos confidenciais.
+
+- Interface estilo explorer/terminal
+- Conteúdos:
+  - Logs
+  - Relatórios
+  - Documentos secretos
+
+---
+
+## 🎨 Sistema de Elementos
+
+Cada item possui um elemento com efeito visual:
+
+- **Morte** → espirais
+- **Energia** → glitch
+- **Conhecimento** → sigilos animados
+- **Sangue** → líquido
+- **Medo** → fumaça
+
+---
+
+## 🧬 Modelagem de Dados (Resumo)
+
+```ts
+type Elemento = "medo" | "sangue" | "morte" | "conhecimento" | "energia";
+
+interface Item {
+  nome: string;
+  descricao: string;
+  elemento: Elemento;
+}
+
+interface Ritual extends Item {
+  circulo: number;
+  execucao: string;
+  alcance: string;
+  efeito: string;
+}
+
+interface Criatura extends Item {
+  vd: number;
+  defesa: number;
+  pontosVida: number;
+}
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+---
+
+## 🧭 Fluxo Geral
+
+```
+Login (/)
+   ↓
+Dashboard (/dashboard)
+   ├── Bestiário
+   ├── Grimório
+   ├── Agentes
+   ├── Arquivos
+   └── Missões
+```
+
+---
+
+## 🧪 Extras (imersão)
+
+- Transições com glitch
+- Loading: `Validando acesso...`
+- Tema escuro
+- Cores:
+  - Verde terminal
+  - Vermelho alerta
+
+---
+
+## 📌 Observações
+
+- Estrutura pensada para SPA (Vue + Vite ou Next)
+- Dashboard funciona como hub de navegação
+- Módulos independentes e escaláveis
