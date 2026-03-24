@@ -26,10 +26,10 @@
 .gradient-bg {
   --c1: #0d0d0d;
   --c2: #111118;
-  --orb-a: #706e71; /* violeta profundo  */
-  --orb-b: #5f6162; /* azul noite        */
-  --orb-c: #2b2c2c; /* verde-escuro      */
-  --orb-d: #3b3b3d; /* índigo            */
+  --orb-a: #706e71;
+  --orb-b: #5f6162;
+  --orb-c: #2b2c2c;
+  --orb-d: #3b3b3d;
   --blur: 120px;
   --size: 55vmax;
 
