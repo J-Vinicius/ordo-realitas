@@ -12,6 +12,7 @@ useHead({
       class="place-self-center flex flex-col justify-center items-center gap-4"
     >
       <Insignia class="w-3/4 md:w-2/5 h-fit" />
+      <h1 class="text-xl font-semibold">Bem vindo, Agente.</h1>
       <Login />
     </main>
   </AnimatedGradient>

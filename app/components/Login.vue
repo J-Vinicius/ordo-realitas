@@ -42,6 +42,6 @@ import { Input } from "@/components/ui/input";
       </FormItem>
     </FormField>
 
-    <Button type="submit"> Confirmar </Button>
+    <Button type="submit"> Acessar </Button>
   </form>
 </template>

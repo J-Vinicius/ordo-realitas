@@ -2,25 +2,21 @@
 
 Sistema web inspirado no universo de RPG paranormal, com foco em rituais, criaturas e gerenciamento de agentes.
 
----
-
 ## 🌐 Estrutura de Rotas
 
 ```
 /                # Login (tela inicial)
-/dashboard       # Hub principal
+/ordem           # Hub principal
 
-/dashboard/bestiario
-/dashboard/grimorio
-/dashboard/agentes
-/dashboard/arquivos
-/dashboard/missoes
+/ordem/bestiario
+/ordem/grimorio
+/ordem/agentes
+/ordem/arquivos
+/ordem/missoes
 ```
 
 - `/` → autenticação
-- `/dashboard/...` → área protegida
-
----
+- `/ordem/...` → área protegida
 
 ## 🔐 Login (`/`)
 
@@ -45,47 +41,24 @@ Tela inicial do sistema.
 ### Fluxo
 
 ```
-/ → /dashboard
+/ → /ordem
 ```
 
----
+## 🧠 Ordem (`/ordem`)
 
-## 🧠 Dashboard (`/dashboard`)
-
-Interface principal estilo sistema operacional.
+Interface principal estilo sistema operacional com aplicativos.
 
 ### Layout
 
-**Sidebar:**
-
-- Dashboard
-- Bestiário
-- Grimório
-- Agentes
-- Arquivos
-
-**Topbar:**
-
-- Nome do agente
-- Patente (Recruta → Elite)
-- Status (sanidade / energia)
-
----
-
-## 🗂️ Home do Dashboard
-
-Interface baseada em “apps”:
-
-```
-[ 📜 Grimório ]   [ 👁️ Bestiário ]
-[ 🧍 Agentes ]    [ 📁 Arquivos ]
-```
-
+**Aplicativos em Grid**
 Cada item abre um módulo do sistema.
 
----
+- [ 👁️ Bestiário ]
+- [ 📜 Grimório ]
+- [ 🧍 Agentes ]
+- [ 📁 Arquivos ]
 
-## 👁️ Bestiário (`/dashboard/bestiario`)
+## 👁️ Bestiário (`/ordem/bestiario`)
 
 Catálogo de criaturas estilo dossiê.
 
@@ -100,14 +73,16 @@ Catálogo de criaturas estilo dossiê.
 
 - Nome
 - Atributos
-- Defesa / Vida
-- Resistências / Vulnerabilidades
+- Pontos de Vida
+- Defesa
+- Resistências
+- Vulnerabilidades
 - Habilidades
 - Ações
 
 ---
 
-## 📜 Grimório (`/dashboard/grimorio`)
+## 📜 Grimório (`/ordem/grimorio`)
 
 Catálogo de rituais.
 
@@ -127,21 +102,14 @@ Catálogo de rituais.
 - Resistência
 - Formas avançadas
 
----
-
-## 🧍 Agentes (`/dashboard/agentes`)
+## 🧍 Agentes (`/ordem/agentes`)
 
 Gerenciamento de agentes.
 
 - Nome
 - Patente
-- Sanidade
-- Energia
-- Histórico
 
----
-
-## 📁 Arquivos (`/dashboard/arquivos`)
+## 📁 Arquivos (`/ordem/arquivos`)
 
 Sistema de arquivos confidenciais.
 
@@ -150,8 +118,6 @@ Sistema de arquivos confidenciais.
   - Logs
   - Relatórios
   - Documentos secretos
-
----
 
 ## 🎨 Sistema de Elementos
 
@@ -163,34 +129,7 @@ Cada item possui um elemento com efeito visual:
 - **Sangue** → líquido
 - **Medo** → fumaça
 
----
-
 ## 🧬 Modelagem de Dados
-
-```ts
-type Elemento = "medo" | "sangue" | "morte" | "conhecimento" | "energia";
-
-interface Item {
-  nome: string;
-  descricao: string;
-  elemento: Elemento;
-}
-
-interface Ritual extends Item {
-  circulo: number;
-  execucao: string;
-  alcance: string;
-  efeito: string;
-}
-
-interface Criatura extends Item {
-  vd: number;
-  defesa: number;
-  pontosVida: number;
-}
-```
-
-## ⬜ Diagrama
 
 ```mermaid
 classDiagram
@@ -280,12 +219,12 @@ Item --> Elemento
 ```
 Login (/)
    ↓
-Dashboard (/dashboard)
-   ├── Bestiário
-   ├── Grimório
-   ├── Agentes
-   ├── Arquivos
-   └── Missões
+Ordem (/ordem)
+   ├── Bestiário  (/ordem/bestiario)
+   ├── Grimório   (/ordem/grimorio)
+   ├── Agentes    (/ordem/agentes)
+   ├── Arquivos   (/ordem/arquivos)
+   └── Missões    (/ordem/missoes)
 ```
 
 ---
@@ -294,15 +233,11 @@ Dashboard (/dashboard)
 
 - Transições com glitch
 - Loading: `Validando acesso...`
-- Tema escuro
-- Cores:
-  - Verde terminal
-  - Vermelho alerta
 
 ---
 
 ## 📌 Observações
 
-- Estrutura pensada para SPA (Vue + Vite ou Next)
-- Dashboard funciona como hub de navegação
+- Estrutura pensada para SPA
+- Ordem funciona como hub de navegação
 - Módulos independentes e escaláveis
