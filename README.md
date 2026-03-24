@@ -165,7 +165,7 @@ Cada item possui um elemento com efeito visual:
 
 ---
 
-## 🧬 Modelagem de Dados (Resumo)
+## 🧬 Modelagem de Dados
 
 ```ts
 type Elemento = "medo" | "sangue" | "morte" | "conhecimento" | "energia";
@@ -188,6 +188,89 @@ interface Criatura extends Item {
   defesa: number;
   pontosVida: number;
 }
+```
+
+## ⬜ Diagrama
+
+```mermaid
+classDiagram
+
+class Item {
+  +nome: string
+  +descricao: string
+  +elemento: Elemento
+}
+
+class Ritual {
+  +circulo: number
+  +execucao: string
+  +alcance: string
+  +efeito: string
+  +duracao: string
+  +resistencia: string
+}
+
+class FormaAvancada {
+  +tipo: string  // Discente | Verdadeira
+  +preRequisito: string
+  +efeito: string
+  +custoAdicional: string
+}
+
+class Criatura {
+  +vd: number
+  +tamanho: string
+  +presencaPerturbadora: string
+  +sentidos: string
+  +defesa: number
+  +pontosVida: number
+  +resistencias: string
+  +vulnerabilidades: string
+  +atributos: string
+  +pericias: string
+  +deslocamento: string
+}
+
+class Habilidade {
+  +nome: string
+  +descricao: string
+}
+
+class Acao {
+  +nome: string
+  +tipo: string  // Reação, padrão, etc.
+  +teste: string
+  +dano: string
+}
+
+class Elemento {
+  <<enumeration>>
+  medo
+  sangue
+  morte
+  conhecimento
+  energia
+}
+
+class Tamanho {
+  <<enumeration>>
+  minusculo
+  pequeno
+  medio
+  grande
+  enorme
+  colossal
+}
+
+Item <|-- Ritual
+Item <|-- Criatura
+
+Ritual --> FormaAvancada
+
+Criatura --> Habilidade
+Criatura --> Acao
+Criatura --> Tamanho
+Item --> Elemento
 ```
 
 ---
