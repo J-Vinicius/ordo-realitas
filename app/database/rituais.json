@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "cover": "https://static.wikia.nocookie.net/ordemparanormal/images/8/8e/S%C3%ADmbolo_Alterar_Mem%C3%B3ria.png/revision/latest/scale-to-width-down/1000?cb=20221020231851&path-prefix=pt-br",
+    "element": "Conhecimento",
+    "circle": 3,
+    "title": "Alterar Memória",
+    "description": "Pode apagar ou modificar a memória recente do alvo."
+  },
+  {
+    "id": 2,
+    "cover": "https://static.wikia.nocookie.net/ordemparanormal/images/2/25/S%C3%ADmbolo_Descarnar.png/revision/latest/scale-to-width-down/1000?cb=20211126134738&path-prefix=pt-br",
+    "element": "Sangue",
+    "circle": 2,
+    "title": "Descarnar",
+    "description": "A pele do alvo é dilacerada, abrindo cortes profundos."
+  },
+  {
+    "id": 3,
+    "cover": "https://static.wikia.nocookie.net/ordemparanormal/images/9/94/S%C3%ADmbolo_Cicatriza%C3%A7%C3%A3o.png/revision/latest/scale-to-width-down/1000?cb=20221029020038&path-prefix=pt-br",
+    "element": "Morte",
+    "circle": 1,
+    "title": "Cicatrização",
+    "description": "Acelera a regeneração de um ferimento."
+  },
+  {
+    "id": 4,
+    "cover": "https://static.wikia.nocookie.net/ordemparanormal/images/5/5b/S%C3%ADmbolo_Eletrocuss%C3%A3o.png/revision/latest/scale-to-width-down/1000?cb=20221020232111&path-prefix=pt-br",
+    "element": "Energia",
+    "circle": 1,
+    "title": "Eletrocussão",
+    "description": "Corrente voltaica eletrocuta o alvo."
+  },
+  {
+    "id": 5,
+    "cover": "https://static.wikia.nocookie.net/ordemparanormal/images/e/e0/S%C3%ADmbolo_Invocar_N%C3%A9voa.png/revision/latest/scale-to-width-down/1000?cb=20211126133331&path-prefix=pt-br",
+    "element": "Medo",
+    "circle": 1,
+    "title": "Cinerária",
+    "description": "Névoa fortalece rituais na área."
+  }
+]
