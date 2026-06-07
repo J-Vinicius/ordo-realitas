@@ -1,15 +1,12 @@
-import { Button } from "~/components/ui/button"
+import { LoginForm } from "~/components/login-form"
+import { useDocumentTitle } from "usehooks-ts"
 
 export default function Home() {
+  useDocumentTitle("Ordo Realitas")
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
+    <div className="flex min-h-[calc(100svh-3rem)] flex-col items-center justify-center gap-6 bg-background p-6 md:p-10">
+      <div className="w-full max-w-sm">
+        <LoginForm />
       </div>
     </div>
   )
