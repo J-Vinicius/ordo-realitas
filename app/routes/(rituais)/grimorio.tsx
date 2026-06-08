@@ -1,3 +1,4 @@
+import { Link } from "react-router"
 import { useDocumentTitle } from "usehooks-ts"
 import { Header } from "~/components/header"
 import { InputSearch } from "~/components/input-search"
@@ -32,7 +33,7 @@ export default function Grimorio() {
       </Header>
       <ul className="grid grid-cols-1 items-stretch gap-2 px-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {rituais.map((ritual) => (
-          <li key={ritual.id}>
+          <Link to={`/grimorio/${ritual.slug}`} key={ritual.id}>
             <Item
               variant="outline"
               className="relative cursor-pointer hover:bg-muted"
@@ -64,7 +65,7 @@ export default function Grimorio() {
                 </Tooltip>
               </ItemContent>
             </Item>
-          </li>
+          </Link>
         ))}
       </ul>
     </main>

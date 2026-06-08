@@ -1,5 +1,6 @@
 import { LoginForm } from "~/components/login-form"
 import { useDocumentTitle } from "usehooks-ts"
+import Footer from "~/components/footer"
 
 export default function Home() {
   useDocumentTitle("Ordo Realitas")
@@ -7,6 +8,7 @@ export default function Home() {
     <div className="flex min-h-[calc(100svh-3rem)] flex-col items-center justify-center gap-6 bg-background p-6 md:p-10">
       <div className="w-full max-w-sm">
         <LoginForm />
+        <Footer />
       </div>
     </div>
   )

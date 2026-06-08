@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "slug": "alterar-memoria",
     "cover": "https://static.wikia.nocookie.net/ordemparanormal/images/8/8e/S%C3%ADmbolo_Alterar_Mem%C3%B3ria.png/revision/latest/scale-to-width-down/1000?cb=20221020231851&path-prefix=pt-br",
     "element": "Conhecimento",
     "circle": 3,
@@ -9,6 +10,7 @@
   },
   {
     "id": 2,
+    "slug": "descarnar",
     "cover": "https://static.wikia.nocookie.net/ordemparanormal/images/2/25/S%C3%ADmbolo_Descarnar.png/revision/latest/scale-to-width-down/1000?cb=20211126134738&path-prefix=pt-br",
     "element": "Sangue",
     "circle": 2,
@@ -17,6 +19,7 @@
   },
   {
     "id": 3,
+    "slug": "cicatrizacao",
     "cover": "https://static.wikia.nocookie.net/ordemparanormal/images/9/94/S%C3%ADmbolo_Cicatriza%C3%A7%C3%A3o.png/revision/latest/scale-to-width-down/1000?cb=20221029020038&path-prefix=pt-br",
     "element": "Morte",
     "circle": 1,
@@ -25,6 +28,7 @@
   },
   {
     "id": 4,
+    "slug": "eletrocussao",
     "cover": "https://static.wikia.nocookie.net/ordemparanormal/images/5/5b/S%C3%ADmbolo_Eletrocuss%C3%A3o.png/revision/latest/scale-to-width-down/1000?cb=20221020232111&path-prefix=pt-br",
     "element": "Energia",
     "circle": 1,
@@ -33,6 +37,7 @@
   },
   {
     "id": 5,
+    "slug": "cineraria",
     "cover": "https://static.wikia.nocookie.net/ordemparanormal/images/e/e0/S%C3%ADmbolo_Invocar_N%C3%A9voa.png/revision/latest/scale-to-width-down/1000?cb=20211126133331&path-prefix=pt-br",
     "element": "Medo",
     "circle": 1,

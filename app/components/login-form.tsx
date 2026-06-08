@@ -15,7 +15,7 @@ export function LoginForm({
         <FieldGroup>
           <div className="flex flex-col items-center gap-4 text-center">
             <div className="flex flex-col items-center gap-2 font-medium">
-              <div className="flex size-40 items-center justify-center rounded-md sm:size-56">
+              <div className="flex size-48 items-center justify-center rounded-md sm:size-56">
                 <img
                   src="/ordo-realitas.svg"
                   alt="Logo Ordo Realitas"

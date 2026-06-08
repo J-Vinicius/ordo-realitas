@@ -11,7 +11,6 @@ import type { Route } from "./+types/root"
 import "./app.css"
 
 import { TooltipProvider } from "~/components/ui/tooltip"
-import Footer from "./components/footer"
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -24,7 +23,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <TooltipProvider>{children}</TooltipProvider>
-        <Footer />
         <ScrollRestoration />
         <Scripts />
       </body>
