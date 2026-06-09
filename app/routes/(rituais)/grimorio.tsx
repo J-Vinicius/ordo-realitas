@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Link } from "react-router"
 import { useDocumentTitle } from "usehooks-ts"
 import { Header } from "~/components/header"
@@ -26,13 +27,35 @@ function elementInfo(elemento: string) {
 export default function Grimorio() {
   useDocumentTitle("Grimório")
 
+  const [search, setSearch] = useState("")
+
+  const rituaisFiltrados = rituais.filter((ritual) => {
+    const term = search.toLowerCase()
+
+    if (term.startsWith("elemento:")) {
+      const elemento = term.replace("elemento:", "").trim()
+      return ritual.element.toLowerCase() === elemento
+    }
+
+    if (term.startsWith("circulo:")) {
+      const circle = Number(term.replace("circulo:", "").trim())
+      return ritual.circle === circle
+    }
+
+    return ritual.title.toLowerCase().includes(term)
+  })
+
   return (
     <main className="flex flex-col">
       <Header>
-        <InputSearch />
+        <InputSearch
+          placeholder="Nome do ritual, elemento:morte ou circulo:2"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
       </Header>
-      <ul className="grid grid-cols-1 items-stretch gap-2 px-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {rituais.map((ritual) => (
+      <ul className="mb-4 grid grid-cols-1 items-stretch gap-2 px-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        {rituaisFiltrados.map((ritual) => (
           <Link to={`/grimorio/${ritual.slug}`} key={ritual.id}>
             <Item
               variant="outline"
