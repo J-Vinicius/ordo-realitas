@@ -1,8 +1,10 @@
+import { ChevronLeft } from "lucide-react"
 import { useState } from "react"
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 import { useDocumentTitle } from "usehooks-ts"
 import { Header } from "~/components/header"
 import { InputSearch } from "~/components/input-search"
+import { Button } from "~/components/ui/button"
 import {
   Item,
   ItemContent,
@@ -27,6 +29,8 @@ function elementInfo(elemento: string) {
 export default function Grimorio() {
   useDocumentTitle("Grimório")
 
+  const navigate = useNavigate()
+
   const [search, setSearch] = useState("")
 
   const rituaisFiltrados = rituais.filter((ritual) => {
@@ -48,6 +52,9 @@ export default function Grimorio() {
   return (
     <main className="flex flex-col">
       <Header>
+        <Button size="icon-lg" variant="outline" onClick={() => navigate(-1)}>
+          <ChevronLeft />
+        </Button>
         <InputSearch
           placeholder="Nome do ritual, elemento:morte ou circulo:2"
           value={search}

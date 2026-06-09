@@ -45,7 +45,7 @@ export function LoginForm({
             />
           </Field>
           <Field>
-            <Button type="submit" onClick={() => navigate("/grimorio")}>
+            <Button type="submit" onClick={() => navigate("/ordo-realitas")}>
               Entrar
             </Button>
           </Field>
