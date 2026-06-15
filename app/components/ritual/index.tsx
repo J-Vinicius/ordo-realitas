@@ -1,11 +1,11 @@
-import type { Advanced, Ritual } from "~/shared/types"
+import type { FormaAvancada, Ritual } from "~/shared/types"
 import { Stats } from "./stats"
 
 export function Ritual(ritual: Ritual) {
   return (
     <div className="flex h-full flex-col gap-8 p-2 md:flex-row">
       <div className="flex h-full basis-1/2 items-center justify-center">
-        <img src={ritual.cover} alt={ritual.title} className="w-md" />
+        <img src={ritual.reference} alt={ritual.name} className="w-md" />
       </div>
 
       <aside className="no-scrollbar flex basis-1/2 flex-col gap-8 text-center md:-m-4 md:ml-0 md:max-h-svh md:overflow-scroll md:border-l md:bg-sidebar md:p-6 md:text-left">
@@ -16,46 +16,47 @@ export function Ritual(ritual: Ritual) {
             className="size-12"
           />
           <div>
-            <h1 className="text-xl font-bold">{ritual.title}</h1>
-            <small className="text-muted-foreground">{ritual.subtitle}</small>
+            <h1 className="text-xl font-bold">{ritual.name}</h1>
           </div>
         </header>
 
-        <Stats stats={ritual.stats} />
+        <Stats ritual={ritual} />
+        <p>{ritual.description}</p>
 
-        {ritual.description.map((text, index) => (
-          <p key={index}>{text}</p>
-        ))}
+        {ritual.discente?.description && (
+          <Advanceds title="Discente" formAvancada={ritual.discente} />
+        )}
 
-        <Advanceds advanceds={ritual.advanceds} />
+        {ritual.verdadeira?.description && (
+          <Advanceds title="Verdadeira" formAvancada={ritual.verdadeira} />
+        )}
       </aside>
     </div>
   )
 }
 
-function Advanceds({ advanceds }: { advanceds: Advanced[] }) {
+function Advanceds({
+  formAvancada,
+  title,
+}: {
+  formAvancada: FormaAvancada
+  title: string
+}) {
   return (
     <ul className="space-y-4 text-left">
-      {advanceds.map((advanced) => (
-        <li
-          key={advanced.title}
-          className="flex items-center justify-between gap-4"
-        >
-          <header>
-            <h2 className="text-lg font-semibold">{advanced.title}</h2>
+      <li key={title} className="flex items-center justify-between gap-4">
+        <header>
+          <h2 className="text-lg font-semibold">{title}</h2>
 
-            <p>{advanced.description}</p>
+          <p>{formAvancada.description}</p>
 
-            <small className="text-muted-foreground">
-              {advanced.requirement}
-            </small>
-          </header>
+          <small className="text-muted-foreground">{formAvancada.preReq}</small>
+        </header>
 
-          <span className="text-lg font-medium whitespace-nowrap">
-            +{advanced.cost} PE
-          </span>
-        </li>
-      ))}
+        <span className="text-lg font-medium whitespace-nowrap">
+          +{formAvancada.custoPE} PE
+        </span>
+      </li>
     </ul>
   )
 }

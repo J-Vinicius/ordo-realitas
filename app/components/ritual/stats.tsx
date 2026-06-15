@@ -1,22 +1,60 @@
 import { Hand, Move, Circle, Target, Hourglass, Shield } from "lucide-react"
 
 import type { LucideIcon } from "lucide-react"
-import type { Stat, StatType } from "~/shared/types"
+import type { Ritual } from "~/shared/types"
 
-const statIcons: Record<StatType, LucideIcon> = {
-  execucao: Hand,
-  alcance: Move,
-  area: Circle,
-  alvo: Target,
-  duracao: Hourglass,
-  resistencia: Shield,
+type StatType =
+  | "execution"
+  | "range"
+  | "area"
+  | "target"
+  | "duration"
+  | "resistance"
+
+type Stat = {
+  type: StatType
+  text: string
 }
 
-export function Stats({ stats }: { stats: Stat[] }) {
+const statIcons: Record<StatType, LucideIcon> = {
+  execution: Hand,
+  range: Move,
+  area: Circle,
+  target: Target,
+  duration: Hourglass,
+  resistance: Shield,
+}
+
+export function Stats({ ritual }: { ritual: Ritual }) {
+  const stats = [
+    {
+      type: "execution",
+      text: ritual.execution,
+    },
+    {
+      type: "range",
+      text: ritual.range,
+    },
+    {
+      type: "area",
+      text: ritual.area,
+    },
+    {
+      type: "target",
+      text: ritual.target,
+    },
+    {
+      type: "duration",
+      text: ritual.duration,
+    },
+    {
+      type: "resistance",
+      text: ritual.resistance,
+    },
+  ] satisfies Stat[]
+
   return (
-    <ul
-      className={`flex flex-row flex-wrap place-content-center gap-10 md:justify-between`}
-    >
+    <ul className="flex flex-wrap place-content-center gap-10 md:justify-between">
       {stats.map((stat) => {
         if (!stat.text.trim()) return null
 
@@ -25,7 +63,7 @@ export function Stats({ stats }: { stats: Stat[] }) {
         return (
           <li
             key={stat.type}
-            className="flex flex-col items-center justify-items-center gap-1 text-center text-[14px]"
+            className="flex flex-col items-center gap-1 text-center text-[14px]"
           >
             <Icon size={20} />
             {stat.text}

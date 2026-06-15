@@ -1,21 +1,21 @@
 import { ChevronLeft } from "lucide-react"
 import { useNavigate, useParams } from "react-router"
-
-import ritualsJson from "~/database/rituais.json"
-
 import { Button } from "~/components/ui/button"
 import { Ritual as RitualDetails } from "~/components/ritual"
 import type { Ritual } from "~/shared/types"
 import { useDocumentTitle } from "usehooks-ts"
+import { useRituals } from "~/hooks/use-ritual"
 
 export default function Ritual() {
-  const { ritual: slug } = useParams()
-
   const navigate = useNavigate()
 
-  const rituals = ritualsJson as Ritual[]
+  const { ritual: slug } = useParams()
 
-  const ritual = rituals.find((r) => r.slug === slug) as Ritual | undefined
+  const rituals = useRituals()
+
+  const ritual = rituals.find((r) => r.slug === slug)
+
+  useDocumentTitle(ritual?.name || "Ritual")
 
   if (!ritual) {
     return (
@@ -24,8 +24,6 @@ export default function Ritual() {
       </main>
     )
   }
-
-  useDocumentTitle(ritual.title)
 
   return (
     <main className="h-svh p-2">

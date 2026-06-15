@@ -1,4 +1,4 @@
-import { ChevronLeft } from "lucide-react"
+import { ChevronLeft, Plus } from "lucide-react"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router"
 import { useDocumentTitle } from "usehooks-ts"
@@ -19,7 +19,7 @@ import {
   TooltipTrigger,
 } from "~/components/ui/tooltip"
 
-import rituais from "~/database/rituais.json"
+import { useRituals } from "~/hooks/use-ritual"
 import { elementsInfo } from "~/shared/info"
 
 function elementInfo(elemento: string) {
@@ -33,7 +33,9 @@ export default function Grimorio() {
 
   const [search, setSearch] = useState("")
 
-  const rituaisFiltrados = rituais.filter((ritual) => {
+  const rituals = useRituals()
+
+  const rituaisFiltrados = rituals.filter((ritual) => {
     const term = search.toLowerCase()
 
     if (term.startsWith("elemento:")) {
@@ -46,13 +48,17 @@ export default function Grimorio() {
       return ritual.circle === circle
     }
 
-    return ritual.title.toLowerCase().includes(term)
+    return ritual.name.toLowerCase().includes(term)
   })
 
   return (
     <main className="flex flex-col">
       <Header>
-        <Button size="icon-lg" variant="outline" onClick={() => navigate(-1)}>
+        <Button
+          size="icon-lg"
+          variant="outline"
+          onClick={() => navigate("/ordo-realitas")}
+        >
           <ChevronLeft />
         </Button>
         <InputSearch
@@ -63,7 +69,7 @@ export default function Grimorio() {
       </Header>
       <ul className="mb-4 grid grid-cols-1 items-stretch gap-2 px-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {rituaisFiltrados.map((ritual) => (
-          <Link to={`/grimorio/${ritual.slug}`} key={ritual.id}>
+          <Link to={`/grimorio/${ritual.slug}`} key={ritual.name}>
             <Item
               variant="outline"
               className="relative cursor-pointer hover:bg-muted"
@@ -72,10 +78,14 @@ export default function Grimorio() {
                 variant="image"
                 className="aspect-square size-14 sm:size-full"
               >
-                <img src={ritual.cover} alt="cover" className="aspect-square" />
+                <img
+                  src={ritual.reference}
+                  alt="cover"
+                  className="aspect-square"
+                />
               </ItemMedia>
               <ItemContent>
-                <ItemTitle>{ritual.title}</ItemTitle>
+                <ItemTitle>{ritual.name}</ItemTitle>
                 <ItemDescription className="line-clamp-2 min-h-10">
                   {ritual.description}
                 </ItemDescription>
@@ -98,6 +108,13 @@ export default function Grimorio() {
           </Link>
         ))}
       </ul>
+      <Button
+        className="absolute right-4 bottom-4"
+        size="icon-lg"
+        onClick={() => navigate("/grimorio/novo")}
+      >
+        <Plus />
+      </Button>
     </main>
   )
 }

@@ -1,61 +1,29 @@
-// type FormaAvancada = {
-//   description: string
-//   custoPE: number
-//   preReq: string
-// }
-
-// export interface Ritual {
-//   name: string
-//   slug: string
-//   reference: {
-//     title: string
-//     image: string
-//   }
-//   element: string
-//   circle: number
-//   execution: string
-//   range: string
-//   area: string
-//   duration: string
-//   resistance: string
-//   target: string
-//   description: string
-//   discente: FormaAvancada
-//   verdadeira: FormaAvancada
-//   fonte: string
-// }
-
-export type StatType =
-  | "execucao"
-  | "alcance"
-  | "area"
-  | "alvo"
-  | "duracao"
-  | "resistencia"
-
-export type Stat = {
-  type: StatType
-  text: string
-}
-
-export type Advanced = {
-  title: string
+export type FormaAvancada = {
   description: string
-  requirement: string
-  cost: number
+  custoPE: number
+  preReq: string
 }
 
 export type Element = "Conhecimento" | "Sangue" | "Morte" | "Energia" | "Medo"
 
-export type Ritual = {
-  id: number
+export interface Ritual {
   slug: string
-  cover: string
+  name: string
   element: Element
+  reference: string
   circle: number
-  title: string
-  subtitle: string
-  stats: Stat[]
-  description: string[]
-  advanceds: Advanced[]
+
+  execution: string
+  range: string
+  area: string
+  target: string
+  duration: string
+  resistance: string
+
+  skill_resistence: string
+
+  description: string
+  discente?: FormaAvancada
+  verdadeira?: FormaAvancada
+  fonte: string
 }

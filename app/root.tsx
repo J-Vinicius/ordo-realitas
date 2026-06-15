@@ -11,6 +11,7 @@ import type { Route } from "./+types/root"
 import "./app.css"
 
 import { TooltipProvider } from "~/components/ui/tooltip"
+import { Toaster } from "sonner"
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -25,6 +26,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <TooltipProvider>{children}</TooltipProvider>
         <ScrollRestoration />
         <Scripts />
+        <Toaster theme="dark" />
       </body>
     </html>
   )
