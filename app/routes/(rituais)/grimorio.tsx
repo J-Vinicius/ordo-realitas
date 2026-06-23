@@ -22,6 +22,8 @@ import {
 import { useRituals } from "~/hooks/use-ritual"
 import { elementsInfo } from "~/shared/info"
 
+import { rituais } from "~/database/rituais"
+
 function elementInfo(elemento: string) {
   return elementsInfo.find((element) => element.name === elemento)
 }
@@ -35,7 +37,9 @@ export default function Grimorio() {
 
   const rituals = useRituals()
 
-  const rituaisFiltrados = rituals.filter((ritual) => {
+  const allRituals = rituals.concat(rituais)
+
+  const rituaisFiltrados = allRituals.filter((ritual) => {
     const term = search.toLowerCase()
 
     if (term.startsWith("elemento:")) {

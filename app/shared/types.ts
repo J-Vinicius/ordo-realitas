@@ -13,14 +13,14 @@ export interface Ritual {
   reference: string
   circle: number
 
-  execution: string
-  range: string
-  area: string
-  target: string
-  duration: string
-  resistance: string
+  execution?: string
+  range?: string
+  area?: string
+  target?: string
+  duration?: string
 
-  skill_resistence: string
+  skill_resistence?: string
+  resistance?: string
 
   description: string
   discente?: FormaAvancada

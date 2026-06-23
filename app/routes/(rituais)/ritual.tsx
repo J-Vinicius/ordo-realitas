@@ -5,6 +5,7 @@ import { Ritual as RitualDetails } from "~/components/ritual"
 import type { Ritual } from "~/shared/types"
 import { useDocumentTitle } from "usehooks-ts"
 import { useRituals } from "~/hooks/use-ritual"
+import { rituais } from "~/database/rituais"
 
 export default function Ritual() {
   const navigate = useNavigate()
@@ -13,7 +14,9 @@ export default function Ritual() {
 
   const rituals = useRituals()
 
-  const ritual = rituals.find((r) => r.slug === slug)
+  const allRituals = rituals.concat(rituais)
+
+  const ritual = allRituals.find((r) => r.slug === slug)
 
   useDocumentTitle(ritual?.name || "Ritual")
 
