@@ -1,4 +1,4 @@
-import { ChevronLeft, Plus } from "lucide-react"
+import { ChevronLeft, Edit, Pencil, Plus, Trash } from "lucide-react"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router"
 import { useDocumentTitle } from "usehooks-ts"
@@ -23,6 +23,7 @@ import { useRituals } from "~/hooks/use-ritual"
 import { elementsInfo } from "~/shared/info"
 
 import { rituais } from "~/database/rituais"
+import { deleteRitual } from "~/lib/db"
 
 function elementInfo(elemento: string) {
   return elementsInfo.find((element) => element.name === elemento)
@@ -76,7 +77,7 @@ export default function Grimorio() {
           <Link to={`/grimorio/${ritual.slug}`} key={ritual.name}>
             <Item
               variant="outline"
-              className="relative cursor-pointer hover:bg-muted"
+              className="group relative cursor-pointer hover:bg-muted"
             >
               <ItemMedia
                 variant="image"
@@ -108,6 +109,25 @@ export default function Grimorio() {
                   </TooltipContent>
                 </Tooltip>
               </ItemContent>
+              <div className="absolute top-2 right-2 z-20 opacity-0 transition-opacity group-hover:opacity-100">
+                <Button
+                  variant="secondary"
+                  size="icon"
+                  onClick={(e) => {
+                    e.preventDefault() // Prevent navigation to detail page
+                    navigate(`/grimorio/novo?slug=${ritual.slug}`) // Assuming ritual.id exists and is used for editing
+                  }}
+                >
+                  <Edit className="size-4" />
+                </Button>
+                <Button
+                  variant="destructive"
+                  size="icon"
+                  onClick={() => deleteRitual(ritual.slug)}
+                >
+                  <Trash className="size-4" />
+                </Button>
+              </div>
             </Item>
           </Link>
         ))}

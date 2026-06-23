@@ -1,7 +1,7 @@
-import type { FormaAvancada, Ritual } from "~/shared/types"
+import type { FormaAvancada, Ritual } from "~/types/ritual"
 import { Stats } from "./stats"
 
-export function Ritual(ritual: Ritual) {
+export function RitualCard(ritual: Ritual) {
   return (
     <div className="flex h-full flex-col gap-8 p-2 md:flex-row">
       <div className="flex h-full basis-1/2 items-center justify-center">

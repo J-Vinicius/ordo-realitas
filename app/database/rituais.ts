@@ -1,4 +1,4 @@
-import type { Ritual } from "~/shared/types"
+import type { Ritual } from "~/types/ritual"
 
 export const rituais: Ritual[] = [
   {

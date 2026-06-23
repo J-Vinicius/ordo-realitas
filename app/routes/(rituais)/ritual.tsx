@@ -1,7 +1,7 @@
 import { ChevronLeft } from "lucide-react"
 import { useNavigate, useParams } from "react-router"
 import { Button } from "~/components/ui/button"
-import { Ritual as RitualDetails } from "~/components/ritual"
+import { RitualCard as RitualDetails } from "~/components/ritual/card"
 import type { Ritual } from "~/shared/types"
 import { useDocumentTitle } from "usehooks-ts"
 import { useRituals } from "~/hooks/use-ritual"
