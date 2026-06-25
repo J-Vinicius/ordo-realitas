@@ -20,7 +20,7 @@ import {
 } from "~/components/ui/tooltip"
 
 import { useRituals } from "~/hooks/use-ritual"
-import { elementsInfo } from "~/shared/info"
+import { elementsInfo } from "~/constants/elements"
 
 import { rituais } from "~/database/rituais"
 import { deleteRitual } from "~/lib/db"
