@@ -5,7 +5,7 @@ export const areas = ["Círculo", "Cone", "Cubo"]
 export const durations = ["Instantânea", "Cena", "Sustentada"]
 export const elements = ["Sangue", "Morte", "Conhecimento", "Energia"]
 export const ranges = ["Toque", "Curto", "Médio", "Longo"]
-export const resistances = ["Fortitude", "Reflexos", "Vontade"]
+export const resistances = ["Anula", "Desacredita", "Parcial", "Reduz à Metade"]
 
 export const stats: {
   title: string

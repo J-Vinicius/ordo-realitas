@@ -21,6 +21,7 @@ export function RitualAdvancedFields({
             onChange={(e) =>
               setNestedField(form, "description", e.target.value)
             }
+            className="h-full resize-none"
           />
 
           <Label>Custo PE</Label>
@@ -35,6 +36,7 @@ export function RitualAdvancedFields({
           <Label>Pré-Requisito</Label>
 
           <Input
+            className="h-16"
             value={card[form]?.preReq ?? ""}
             onChange={(e) => setNestedField(form, "preReq", e.target.value)}
           />

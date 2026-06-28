@@ -18,11 +18,12 @@ import { Label } from "~/components/ui/label"
 import { Textarea } from "~/components/ui/textarea"
 import { Input } from "~/components/ui/input"
 import { Field } from "~/components/ui/field"
+import { RitualCard } from "~/components/ritual/card"
 
 const initialCard: Ritual = {
   slug: "",
   name: "",
-  element: "Sangue",
+  element: "sangue",
   reference: "",
   circle: 1,
   execution: "",
@@ -136,19 +137,23 @@ export default function CreateEditRitualForm() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center p-4">
-      <div className="w-[90%]">
+    <div className="flex">
+      <div className="m-4 hidden basis-1/2 sm:block">
+        <RitualCard ritual={card} isMobile />
+      </div>
+
+      <aside className="flex-1 basis-1/2 bg-sidebar p-4">
         <h2 className="mb-4 text-xl font-bold">
           {targetSlug && targetSlug !== "novo"
             ? "Editar Ritual"
             : "Novo Ritual"}
         </h2>
-
         <RitualForm onSubmit={onSubmit}>
           <RitualBasicFields card={card} setField={setField} />
           <Field>
             <Label>Descrição</Label>
             <Textarea
+              className="h-full resize-none"
               placeholder="Descrição do que o ritual faz"
               value={card.description}
               onChange={(e) => setField("description", e.target.value)}
@@ -173,7 +178,7 @@ export default function CreateEditRitualForm() {
             onReset={resetCard}
           />
         </RitualForm>
-      </div>
+      </aside>
     </div>
   )
 }

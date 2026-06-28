@@ -1,20 +1,55 @@
 import type { FormaAvancada, Ritual } from "~/types/ritual"
 import { Stats } from "./stats"
 
-export function RitualCard(ritual: Ritual) {
+const style = {
+  card: {
+    mobile: "flex h-full flex-col gap-8 p-2",
+    desktop: "md:flex-row",
+  },
+  image: {
+    mobile: "flex h-full basis-1/2 items-center justify-center",
+    desktop: "",
+  },
+  imageContent: {
+    mobile: "w-md",
+    desktop: "",
+  },
+  aside: {
+    mobile: "no-scrollbar flex basis-1/2 flex-col gap-8 text-center",
+    desktop:
+      "md:-m-4 md:ml-0 md:max-h-svh md:overflow-scroll md:border-l md:bg-sidebar md:p-6 md:text-left",
+  },
+  header: {
+    mobile: "flex flex-col items-center",
+    desktop: "md:flex-row md:gap-4",
+  },
+}
+
+type RitualCardProps = {
+  ritual: Ritual
+  isMobile: boolean
+}
+
+export function RitualCard({ ritual, isMobile }: RitualCardProps) {
+  const mode = isMobile ? "mobile" : "desktop"
   return (
-    <div className="flex h-full flex-col gap-8 p-2 md:flex-row">
-      <div className="flex h-full basis-1/2 items-center justify-center">
-        <img src={ritual.reference} alt={ritual.name} className="w-md" />
+    <div className={style.card[mode]}>
+      <div className={style.image[mode]}>
+        <img
+          src={ritual.reference}
+          alt={ritual.name}
+          className={style.imageContent[mode]}
+        />
       </div>
 
-      <aside className="no-scrollbar flex basis-1/2 flex-col gap-8 text-center md:-m-4 md:ml-0 md:max-h-svh md:overflow-scroll md:border-l md:bg-sidebar md:p-6 md:text-left">
-        <header className="flex flex-col items-center md:flex-row md:gap-4">
+      <aside className={style.aside[mode]}>
+        <header className={style.header[mode]}>
           <img
             src={`/assets/elementos/${ritual.element}.png`}
             alt={ritual.element}
             className="size-12"
           />
+
           <div>
             <h1 className="text-xl font-bold">{ritual.name}</h1>
           </div>
@@ -30,6 +65,8 @@ export function RitualCard(ritual: Ritual) {
         {ritual.verdadeira?.description && (
           <Advanceds title="Verdadeira" formAvancada={ritual.verdadeira} />
         )}
+
+        <small>{ritual.fonte}</small>
       </aside>
     </div>
   )

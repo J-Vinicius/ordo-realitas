@@ -102,7 +102,7 @@
   * {
     --sb-track-color: var(--color-background);
     --sb-thumb-color: var(--color-accent);
-    --sb-size: 4px;
+    --sb-size: 2px;
   }
 
   *::-webkit-scrollbar {

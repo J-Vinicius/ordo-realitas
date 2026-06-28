@@ -14,7 +14,7 @@ import { stats } from "~/constants/ritual"
 
 export function RitualStatsFields({ card, setField }: RitualFieldProps) {
   return (
-    <ul className="gap-2 sm:grid sm:grid-cols-3 md:grid-cols-6">
+    <ul className="grid-cols-3 gap-2 sm:grid">
       {stats.map((stat) => (
         <Field key={stat.title}>
           <Label>{stat.title}</Label>
@@ -40,7 +40,7 @@ export function RitualStatsFields({ card, setField }: RitualFieldProps) {
       ))}
 
       <Field>
-        <Label>Perícia Resistência</Label>
+        <Label>Perícia para Resistência</Label>
         <Input
           value={card.skill_resistence}
           onChange={(e) => setField("skill_resistence", e.target.value)}
