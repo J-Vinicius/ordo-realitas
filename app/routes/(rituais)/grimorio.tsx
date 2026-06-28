@@ -23,6 +23,8 @@ import { useRituals } from "~/hooks/use-ritual"
 import { elementsInfo } from "~/constants/elements"
 
 import { deleteRitual } from "~/lib/db"
+import { Tag } from "~/components/tag"
+import type { Element } from "~/types/ritual"
 
 function elementInfo(elemento: string) {
   return elementsInfo.find((element) => element.name === elemento)
@@ -78,7 +80,7 @@ export default function Grimorio() {
             >
               <ItemMedia
                 variant="image"
-                className="aspect-square size-14 sm:size-full"
+                className="aspect-square size-24 sm:size-full"
               >
                 <img
                   src={ritual.reference}
@@ -87,28 +89,34 @@ export default function Grimorio() {
                 />
               </ItemMedia>
               <ItemContent>
-                <ItemTitle>{ritual.name}</ItemTitle>
+                <ItemTitle className="text-base font-semibold">
+                  {ritual.name}
+                </ItemTitle>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Tag
+                      variant={ritual.element.toLocaleLowerCase() as Element}
+                    >
+                      <img
+                        src={`/assets/elementos/${ritual.element}.png`}
+                        alt={ritual.element}
+                        className="aspect-square size-2.5"
+                      />
+                      {ritual.element}
+                    </Tag>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    {elementInfo(ritual.element)?.info}
+                  </TooltipContent>
+                </Tooltip>
                 <ItemDescription className="line-clamp-2 min-h-10">
                   {ritual.description}
                 </ItemDescription>
               </ItemContent>
-              <ItemContent>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <img
-                      src={`/assets/elementos/${ritual.element}.png`}
-                      alt={ritual.element}
-                      className="aspect-square size-8"
-                    />
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    {ritual.element}: {elementInfo(ritual.element)?.info}
-                  </TooltipContent>
-                </Tooltip>
-              </ItemContent>
+
               <div className="absolute top-2 right-2 z-20 opacity-0 transition-opacity group-hover:opacity-100">
                 <Button
-                  variant="secondary"
+                  variant="outline"
                   size="icon"
                   onClick={(e) => {
                     e.preventDefault() // Prevent navigation to detail page

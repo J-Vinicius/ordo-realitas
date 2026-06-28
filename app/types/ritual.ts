@@ -4,7 +4,7 @@ export type FormaAvancada = {
   preReq: string
 }
 
-export type Element = "Conhecimento" | "Sangue" | "Morte" | "Energia" | "Medo"
+export type Element = "conhecimento" | "sangue" | "morte" | "energia" | "medo"
 
 export interface Ritual {
   slug: string
