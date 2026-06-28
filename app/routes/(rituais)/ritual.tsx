@@ -5,6 +5,7 @@ import { RitualCard as RitualDetails } from "~/components/ritual/card"
 import { useDocumentTitle, useMediaQuery } from "usehooks-ts"
 import { useRituals } from "~/hooks/use-ritual"
 import { rituais } from "~/database/rituais"
+import { useEffect, useState } from "react"
 
 export default function Ritual() {
   const navigate = useNavigate()
@@ -20,6 +21,23 @@ export default function Ritual() {
   useDocumentTitle(ritual?.name || "Ritual")
   const isDesktop = useMediaQuery("(min-width: 640px)")
 
+  const [isMobile, setIsMobile] = useState<boolean | null>(null)
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 640px)")
+
+    const update = () => setIsMobile(media.matches)
+
+    update() // executa antes do primeiro paint após montar
+    media.addEventListener("change", update)
+
+    return () => media.removeEventListener("change", update)
+  }, [])
+
+  if (isMobile === null) {
+    return null // ou um Skeleton
+  }
+
   if (!ritual) {
     return (
       <main className="flex h-svh items-center justify-center">
@@ -29,7 +47,7 @@ export default function Ritual() {
   }
 
   return (
-    <main className="h-svh p-2">
+    <main className="h-svh">
       <Button
         variant="outline"
         size="icon-lg"
@@ -39,7 +57,7 @@ export default function Ritual() {
         <ChevronLeft />
       </Button>
 
-      <RitualDetails ritual={ritual} isMobile={isDesktop} />
+      <RitualDetails ritual={ritual} isMobile={isMobile} />
     </main>
   )
 }

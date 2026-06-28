@@ -1,27 +1,34 @@
-import type { FormaAvancada, Ritual } from "~/types/ritual"
+import type { Element, FormaAvancada, Ritual } from "~/types/ritual"
 import { Stats } from "./stats"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "~/components/ui/tooltip"
+import { Tag } from "~/components/tag"
+import { elementsInfoFunction } from "~/constants/elements"
 
 const style = {
   card: {
-    mobile: "flex h-full flex-col gap-8 p-2",
-    desktop: "md:flex-row",
+    mobile: "flex flex-col p-2",
+    desktop: "flex min-h-screen",
   },
   image: {
-    mobile: "flex h-full basis-1/2 items-center justify-center",
-    desktop: "",
+    mobile: "flex items-center justify-center",
+    desktop: "flex items-center justify-center basis-1/2",
   },
   imageContent: {
     mobile: "w-md",
-    desktop: "",
+    desktop: "w-md",
   },
   aside: {
-    mobile: "no-scrollbar flex basis-1/2 flex-col gap-8 text-center",
+    mobile: " text-center space-y-6",
     desktop:
-      "md:-m-4 md:ml-0 md:max-h-svh md:overflow-scroll md:border-l md:bg-sidebar md:p-6 md:text-left",
+      "basis-1/2 bg-sidebar p-4 text-left max-h-svh no-scrollbar space-y-6 overflow-scroll",
   },
   header: {
-    mobile: "flex flex-col items-center",
-    desktop: "md:flex-row md:gap-4",
+    mobile: "space-y-2",
+    desktop: "space-y-2",
   },
 }
 
@@ -44,15 +51,28 @@ export function RitualCard({ ritual, isMobile }: RitualCardProps) {
 
       <aside className={style.aside[mode]}>
         <header className={style.header[mode]}>
-          <img
-            src={`/assets/elementos/${ritual.element}.png`}
-            alt={ritual.element}
-            className="size-12"
-          />
-
           <div>
             <h1 className="text-xl font-bold">{ritual.name}</h1>
           </div>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Tag variant={ritual.element.toLocaleLowerCase() as Element}>
+                <img
+                  src={`/assets/elementos/${ritual.element}.png`}
+                  alt={ritual.element}
+                  className="aspect-square size-2.5"
+                />
+                {ritual.element}
+              </Tag>
+            </TooltipTrigger>
+            <TooltipContent side="bottom">
+              {
+                elementsInfoFunction(
+                  ritual.element.toLocaleLowerCase() as Element
+                )?.info
+              }
+            </TooltipContent>
+          </Tooltip>
         </header>
 
         <Stats ritual={ritual} />
@@ -66,7 +86,9 @@ export function RitualCard({ ritual, isMobile }: RitualCardProps) {
           <Advanceds title="Verdadeira" formAvancada={ritual.verdadeira} />
         )}
 
-        <small>{ritual.fonte}</small>
+        <small className="font-light text-muted-foreground">
+          {ritual.fonte}
+        </small>
       </aside>
     </div>
   )
