@@ -12,6 +12,10 @@ class RitualDB extends Dexie {
     this.version(1).stores({
       rituals: "slug, name, element, circle",
     })
+
+    this.on("populate", async () => {
+      await this.rituals.bulkAdd(staticRituais)
+    })
   }
 }
 
@@ -40,11 +44,9 @@ export async function getRitualsByElement(element: string) {
 }
 
 export async function updateRitual(slug: string, data: Partial<Ritual>) {
-  // Como o slug é a chave primária, podemos atualizar diretamente
   return await db.rituals.update(slug, data)
 }
 
 export async function deleteRitual(slug: string) {
-  // Como o slug é a chave primária, podemos deletar diretamente
   return await db.rituals.delete(slug)
 }
