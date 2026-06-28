@@ -2,7 +2,7 @@ import { ChevronLeft } from "lucide-react"
 import { useNavigate, useParams } from "react-router"
 import { Button } from "~/components/ui/button"
 import { RitualCard as RitualDetails } from "~/components/ritual/card"
-import { useDocumentTitle, useMediaQuery } from "usehooks-ts"
+import { useDocumentTitle } from "usehooks-ts"
 import { useRituals } from "~/hooks/use-ritual"
 import { rituais } from "~/database/rituais"
 import { useEffect, useState } from "react"
@@ -19,7 +19,6 @@ export default function Ritual() {
   const ritual = allRituals.find((r) => r.slug === slug)
 
   useDocumentTitle(ritual?.name || "Ritual")
-  const isDesktop = useMediaQuery("(min-width: 640px)")
 
   const [isMobile, setIsMobile] = useState<boolean | null>(null)
 
