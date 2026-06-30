@@ -20,7 +20,7 @@ import {
 } from "~/components/ui/tooltip"
 
 import { useRituals } from "~/hooks/use-ritual"
-import { elementsInfo } from "~/constants/elements"
+import { elementsInfo, elementsInfoFunction } from "~/constants/elements"
 
 import { deleteRitual } from "~/lib/db"
 import { Tag } from "~/components/tag"
@@ -92,23 +92,30 @@ export default function Grimorio() {
                 <ItemTitle className="text-base font-semibold">
                   {ritual.name}
                 </ItemTitle>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Tag
-                      variant={ritual.element.toLocaleLowerCase() as Element}
-                    >
-                      <img
-                        src={`/assets/elementos/${ritual.element}.png`}
-                        alt={ritual.element}
-                        className="aspect-square size-2.5"
-                      />
-                      {ritual.element}
-                    </Tag>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    {elementInfo(ritual.element)?.info}
-                  </TooltipContent>
-                </Tooltip>
+                <div className="flex items-center gap-2">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Tag
+                        variant={ritual.element.toLocaleLowerCase() as Element}
+                      >
+                        <img
+                          src={`/assets/elementos/${ritual.element}.png`}
+                          alt={ritual.element}
+                          className="aspect-square size-2.5"
+                        />
+                        {ritual.element}
+                      </Tag>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      {
+                        elementsInfoFunction(
+                          ritual.element.toLocaleLowerCase() as Element
+                        )?.info
+                      }
+                    </TooltipContent>
+                  </Tooltip>
+                  <small>{ritual.circle}º Círculo</small>
+                </div>
                 <ItemDescription className="line-clamp-2 min-h-10">
                   {ritual.description}
                 </ItemDescription>

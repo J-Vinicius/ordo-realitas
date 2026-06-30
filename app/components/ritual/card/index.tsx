@@ -22,12 +22,12 @@ const style = {
     desktop: "w-md",
   },
   aside: {
-    mobile: " text-center space-y-6",
+    mobile: "p-4 text-center space-y-6",
     desktop:
       "basis-1/2 bg-sidebar p-4 text-left max-h-svh no-scrollbar space-y-6 overflow-scroll",
   },
   header: {
-    mobile: "space-y-2",
+    mobile: "flex flex-col gap-2",
     desktop: "space-y-2",
   },
 }
@@ -54,25 +54,28 @@ export function RitualCard({ ritual, isMobile }: RitualCardProps) {
           <div>
             <h1 className="text-xl font-bold">{ritual.name}</h1>
           </div>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Tag variant={ritual.element.toLocaleLowerCase() as Element}>
-                <img
-                  src={`/assets/elementos/${ritual.element}.png`}
-                  alt={ritual.element}
-                  className="aspect-square size-2.5"
-                />
-                {ritual.element}
-              </Tag>
-            </TooltipTrigger>
-            <TooltipContent side="bottom">
-              {
-                elementsInfoFunction(
-                  ritual.element.toLocaleLowerCase() as Element
-                )?.info
-              }
-            </TooltipContent>
-          </Tooltip>
+          <div className="flex w-full flex-col place-items-center gap-2">
+            <small>{ritual.circle}º Círculo</small>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Tag variant={ritual.element.toLocaleLowerCase() as Element}>
+                  <img
+                    src={`/assets/elementos/${ritual.element}.png`}
+                    alt={ritual.element}
+                    className="aspect-square size-2.5"
+                  />
+                  {ritual.element}
+                </Tag>
+              </TooltipTrigger>
+              <TooltipContent side="bottom">
+                {
+                  elementsInfoFunction(
+                    ritual.element.toLocaleLowerCase() as Element
+                  )?.info
+                }
+              </TooltipContent>
+            </Tooltip>
+          </div>
         </header>
 
         <Stats ritual={ritual} />
