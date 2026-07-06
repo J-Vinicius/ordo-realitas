@@ -13,7 +13,7 @@ Ordem (/ordem)                                    # Hub principal
    ├── Grimório      (/ordem/grimorio)            # Rituais
    │    └── Ritual   (/ordem/grimorio/{ritual})   # Ritual {slug}
    └── Agentes       (/ordem/agentes)             # Fichas de Personagens
-        └── Agente   (/ordem/agentes/{agente})    # Ficha de Personagem
+        └── Agente   (/ordem/agentes/{agente})    # Ficha de Personagem {slug}
 ```
 
 - `/`: Autenticação.

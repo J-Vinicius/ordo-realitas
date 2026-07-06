@@ -54,7 +54,7 @@ export function RitualCard({ ritual, isMobile }: RitualCardProps) {
           <div>
             <h1 className="text-xl font-bold">{ritual.name}</h1>
           </div>
-          <div className="flex w-full flex-col place-items-center gap-2">
+          <div className="flex w-full flex-col place-items-center gap-2 sm:flex-row">
             <small>{ritual.circle}º Círculo</small>
             <Tooltip>
               <TooltipTrigger asChild>
